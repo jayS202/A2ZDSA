@@ -1,5 +1,6 @@
 //Sliding Window Technique
 //source: Ryan Schachte: https://youtu.be/MK-NZ4hN7rs?si=tjQj0QnyCxxXPCMK
+//LeetCode 1004 - Max Consecutive One's III (Sliding window technique is used) 
 
 //Q) Find the sum of each subarray of length 3
 #include<bits/stdc++.h>
