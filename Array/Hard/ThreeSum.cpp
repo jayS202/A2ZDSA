@@ -83,10 +83,10 @@ int main(){
 using namespace std;
 
 vector<vector<int>> triplet(int n, vector<int> arr){
-    set<vector<int>> st;
+    vector<vector<int>> ans;
     sort(arr.begin(),arr.end());
     for(int i=0;i<n;i++){
-        if(i>0 && arr[i]==arr[i-1]) continue;
+        if(i!=0 && arr[i]==arr[i-1]) continue;
         int j = i+1;
         int k = n-1;
         while(j<k){
@@ -98,7 +98,7 @@ vector<vector<int>> triplet(int n, vector<int> arr){
             }
             else{
                 vector<int> temp = {arr[i],arr[j],arr[k]};
-                st.insert(temp);
+                ans.push_back(temp);
                 j++;
                 k--;
                 while(j<k && arr[j]==arr[j-1])j++;
@@ -106,7 +106,6 @@ vector<vector<int>> triplet(int n, vector<int> arr){
             }
         }
     }
-    vector<vector<int>> ans(st.begin(),st.end());
     return ans;
 }
 
