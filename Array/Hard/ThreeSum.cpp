@@ -102,7 +102,7 @@ vector<vector<int>> triplet(int n, vector<int> arr){
                 j++;
                 k--;
                 while(j<k && arr[j]==arr[j-1])j++;
-                while(j<k && arr[k]==arr[k-1])k--;
+                while(j<k && arr[k]==arr[k+1])k--;
             }
         }
     }
