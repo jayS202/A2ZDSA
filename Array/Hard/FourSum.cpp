@@ -94,7 +94,7 @@ int main(){
 
 
 // Optimal
-// TC - O(N) or O(N*logN) depending on which map data structure we are using, where N = size of the array., SC - O(N)
+// TC - O(N) or O(N*logN) depending on which map data structure we are using, where N = size of the array., SC - O(no. of quadruplets)
 #include<bits/stdc++.h>
 using namespace std;
 
