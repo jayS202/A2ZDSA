@@ -6,7 +6,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-pair<int,int> firstAndLastPosition(vector<int> arr, int n, int k){
+pair<int,int> firstAndLastPosition(vector<int>& arr, int n, int k){
     int first=-1, last=-1;
     for(int i=0;i<n;i++){
         if(arr[i]==k){
@@ -32,7 +32,7 @@ int main(){
 #include<bits/stdc++.h>
 using namespace std;
 
-int lower_bound(vector<int> arr, int n, int k){
+int lower_bound(vector<int>& arr, int n, int k){
     int low = 0, high = n-1;
     int ans = n;
     while(low<=high){
@@ -47,7 +47,7 @@ int lower_bound(vector<int> arr, int n, int k){
     return ans;
 }
 
-int upper_bound(vector<int> arr, int n, int k){
+int upper_bound(vector<int>& arr, int n, int k){
     int low = 0, high = n-1;
     int ans=n;
     while(low<high){
@@ -62,7 +62,7 @@ int upper_bound(vector<int> arr, int n, int k){
     return ans;
 }
 
-pair<int,int> firstAndLastPosition(vector<int> arr, int n, int k){
+pair<int,int> firstAndLastPosition(vector<int>& arr, int n, int k){
     int lb = lower_bound(arr,n,k);
     if(arr[lb]!=k || lb == n)return {-1,-1};
     int ub = upper_bound(arr, n, k);
@@ -83,7 +83,7 @@ int main(){
 #include<bits/stdc++.h>
 using namespace std;
 
-int firstbinarysearch(vector<int> &arr, int n, int k){
+int firstbinarysearch(vector<int>& arr, int n, int k){
     int low = 0, high = n-1;
     int ans = -1;
     while(low<=high){
@@ -100,7 +100,7 @@ int firstbinarysearch(vector<int> &arr, int n, int k){
     return ans;
 }
 
-int lastbinarysearch(vector<int> &arr, int n, int k){
+int lastbinarysearch(vector<int>& arr, int n, int k){
     int low=0, high = n-1;
     int ans = -1;
     while(low<=high){
@@ -117,7 +117,7 @@ int lastbinarysearch(vector<int> &arr, int n, int k){
     return ans;
 }
 
-pair<int,int> firstAndLastPosition(vector<int> arr, int n, int k){
+pair<int,int> firstAndLastPosition(vector<int>& arr, int n, int k){
     int first = firstbinarysearch(arr, n, k);
     if(first==-1)return {-1,-1};
     int last = lastbinarysearch(arr,n,k);
