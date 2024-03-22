@@ -15,7 +15,7 @@ int findMin(vector<int> arr){
             mini = min(mini, arr[low]);
             low = mid + 1;
         }else{
-            mini = min(mini, arr[high]);
+            mini = min(mini, arr[mid]);
             high = mid - 1;
         }
     }
@@ -47,7 +47,7 @@ int findMin(vector<int> arr){
             mini = min(mini, arr[low]);
             low = mid + 1;
         }else{
-            mini = min(mini, arr[high]);
+            mini = min(mini, arr[mid]);
             high = mid - 1;
         }
     }
