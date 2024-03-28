@@ -17,7 +17,7 @@ double fastexpo(double b, int expo){
             base = base * base;
         }
     }
-    if(expi<0) ans = (double)(1.0)/(double)(ans);
+    if(expo<0) ans = (double)(1.0)/(double)(ans);
     return ans;
 }
 
