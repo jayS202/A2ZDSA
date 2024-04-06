@@ -18,7 +18,7 @@ int smallestDivisor(vector<int> &arr, int limit){
         int d = 0;
         int n = arr.size();
         for(int j=0;j<n;j++){
-            d += ceil((double)arr[j]/(double)i);
+            d += ceil((double)arr[j]/(double)i); // d += (arr[j] + i - 1)/i;
         }
         if(d<=limit)
             return i;
@@ -43,7 +43,7 @@ int sumDiv(vector<int> &arr, int mid){
     int d = 0;
     int n = arr.size();
     for(int i=0;i<n;i++){
-        d += ceil((double)arr[i]/(double)mid);
+        d += ceil((double)arr[i]/(double)mid); // d += (arr[i] + mid - 1)/ mid;
     }
     return d;
 }
