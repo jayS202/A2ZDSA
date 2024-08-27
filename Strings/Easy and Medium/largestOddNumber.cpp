@@ -7,7 +7,6 @@ using namespace std;
 
 string largestOddNum(string s){
     int n = s.size();
-    int track = -1;
     for(int i=n-1;i>=0;i--){
         int number = s[i]-'0';
         if(number%2==1){
