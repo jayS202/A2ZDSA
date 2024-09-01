@@ -32,17 +32,20 @@ int main(){
 using namespace std;
 
 bool anagram(string str, string goal){
-    vector<int> IndexStr(200, 0);
-    
-    if(str.size()!=goal.size())return false;
-    
-    for(int i=0;i<str.size();i++){
-        IndexStr[str[i]] = i+1;
+    if(s.size()!=t.size())return false;
+    vector<int> freq(26,0);
+    for(int i=0;i<s.size();i++){
+        freq[s[i]-'a']++;
     }
-    
-    for(int i=0;i<goal.size();i++){
-        if(IndexStr[goal[i]] == 0)return false;
+
+    for(int i=0;i<t.size();i++){
+        freq[t[i]-'a']--;
     }
+
+    for(int i=0;i<26;i++){
+        if(freq[i]!=0)return false;
+    }
+
     return true;
 }
 
