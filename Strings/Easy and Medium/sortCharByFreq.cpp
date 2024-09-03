@@ -33,3 +33,40 @@ int main()
     cout<<res;
     return 0;
 }
+
+// TC - O(N log N) SC - O(N)
+#include<bits/stdc++.h>
+using namespace std;
+
+string sortByFrequency(string s){
+    unordered_map<char,int> ans;
+    string res = "";
+    
+    // Frequency Counting
+    for(char a: s){
+        ans[a]++;
+    }
+    
+    // Storing Pairs in Vector
+    vector<pair<char,int>> freqVec(ans.begin(),ans.end());
+
+    // Sorting using lamnda function 
+    sort(freqVec.begin(),freqVec.end(),[](pair<char,int> &a, pair<char,int> &b){
+        return a.second>b.second;
+    });
+
+    // Buid the Result
+    for(auto it: freqVec){
+        res.append(it.second, it.first);
+    }
+
+    return res;
+}
+
+int main()
+{
+    string s = "tree";
+    string res = sortByFrequency(s);
+    cout<<res;
+    return 0;
+}
