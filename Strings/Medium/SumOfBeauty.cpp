@@ -48,3 +48,40 @@ int main()
     cout<<res;
     return 0;
 }
+
+// TC - O(N^2) SC - O(1)
+#include<bits/stdc++.h>
+using namespace std;
+
+int beautySum(string s){
+    int Beauty = 0;
+    int n = s.size();
+    for(int i=0;i<n;i++){
+        int freq[26] = {0};
+        for(int j=i;j<n;j++){
+            freq[s[j] - 'a']++;
+            
+            int mini = n, maxi = 0;
+            for(int k=0;k<26;k++){
+                if(freq[k]>0){
+                    mini = min(mini, freq[k]);
+                    maxi = max(maxi, freq[k]);
+                }
+            }
+            
+            Beauty += maxi - mini;
+        }
+    }
+    return Beauty;
+}
+
+
+int main()
+{
+    string s1 = "aabcb";
+    string s2 = "aabcbaa";
+    
+    cout << "Beauty sum of \"" << s1 << "\": " << beautySum(s1) << endl;  // Output: 5
+    cout << "Beauty sum of \"" << s2 << "\": " << beautySum(s2) << endl;  // Output: 17
+    return 0;
+}
