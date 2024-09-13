@@ -4,6 +4,7 @@
 // For example, the beauty of "abaacc" is 3 - 1 = 2.
 // Given a string s, return the sum of beauty of all of its substrings.
 
+// Brute Force
 // TC - O(N^4) SC - O(N)
 #include <bits/stdc++.h>
 using namespace std;
@@ -49,6 +50,7 @@ int main()
     return 0;
 }
 
+// Hashing
 // TC - O(N^2) SC - O(1)
 #include<bits/stdc++.h>
 using namespace std;
@@ -85,3 +87,43 @@ int main()
     cout << "Beauty sum of \"" << s2 << "\": " << beautySum(s2) << endl;  // Output: 17
     return 0;
 }
+
+
+// We can also use unordered map to solve the problem.
+// Mapping is comparitively faster than Hashing
+// TC - O(N^2) SC-O(1)
+#include<bits/stdc++.h>
+using namespace std;
+
+int beautySum(string s){
+    int Beauty = 0;
+        int n = s.size();
+        for(int i=0;i<n;i++){
+            unordered_map<char,int> freq;
+            for(int j=i;j<n;j++){
+                freq[s[j]]++;
+
+                int mini = INT_MAX;
+                int maxi = INT_MIN;
+                for(auto it: freq){
+                        mini = min(mini, it.second);
+                        maxi = max(maxi, it.second);
+                }
+
+                Beauty += maxi-mini;
+            }
+        }
+        return Beauty;
+}
+
+
+int main()
+{
+    string s1 = "aabcb";
+    string s2 = "aabcbaa";
+    
+    cout << "Beauty sum of \"" << s1 << "\": " << beautySum(s1) << endl;  // Output: 5
+    cout << "Beauty sum of \"" << s2 << "\": " << beautySum(s2) << endl;  // Output: 17
+    return 0;
+}
+
