@@ -61,3 +61,50 @@ int main()
     cout<<res;
     return 0;
 }
+
+
+// With a common function
+
+#include<bits/stdc++.h>
+using namespace std;
+
+string expandAroundCenter(string s, int left, int right){
+    int n = s.size();
+    while(left>=0 && right<n){
+        if(s[left]==s[right]){
+            left--;
+            right++;
+        }else{
+            break;
+        }
+    }
+    int len = right - left - 1;
+    int start = left + 1;
+    return s.substr(start, len);
+}
+
+string longestPalindrome(string s){
+    string longest;
+    int n = s.size();
+    for(int i=0;i<n;i++){
+        string s1 = expandAroundCenter(s,i,i);
+        if(s1.size()>longest.size()){
+            longest = s1;
+        }
+        
+        string s2 = expandAroundCenter(s, i, i+1);
+        if(s2.size()>longest.size()){
+            longest = s2;
+        }
+        
+    }
+    return longest;
+}
+
+int main()
+{
+    string s = "babad";
+    string res = longestPalindrome(s);
+    cout<<res;
+    return 0;
+}
