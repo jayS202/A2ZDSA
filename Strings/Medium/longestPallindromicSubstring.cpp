@@ -9,6 +9,7 @@ using namespace std;
 // Expand Around Center method
 string longestPalindrome(string s){
     int n = s.size();
+    if(n<=1)return s;
     int max_len = 1;
     int start = 0, end = 0;
 
@@ -86,6 +87,7 @@ string expandAroundCenter(string s, int left, int right){
 string longestPalindrome(string s){
     string longest;
     int n = s.size();
+    if(n<=1) return s;
     for(int i=0;i<n;i++){
         string s1 = expandAroundCenter(s,i,i);
         if(s1.size()>longest.size()){
