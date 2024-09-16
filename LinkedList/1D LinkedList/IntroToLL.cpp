@@ -5,12 +5,14 @@ class Node{
     public:
         int data;
         Node* next;
+    // In cpp they are not public by default
     public:
+        // Constructor specifying data and the address
         Node(int data1, Node* next1){
             data = data1;
             next = next1;
         }
-        
+        // Constructor specifying only data (New node is created with the nullptr)
         Node(int data1){
             data = data1;
             next = nullptr;
