@@ -44,6 +44,7 @@ void print(Node* head){
 }
 
 Node* reverseDLL(Node* head){
+    if(head == NULL || head->next == NULL)return head;
     stack<int> st;
     Node* temp = head;
     while(temp){
@@ -115,23 +116,7 @@ void print(Node* head){
 }
 
 Node* reverseDLL(Node* head){
-    stack<int> st;
-    Node* temp = head;
-    while(temp){
-        st.push(temp->data);
-        temp = temp->next;
-    }
-    
-    Node* temp1 = head;
-    while(temp1){
-        temp1->data = st.top();
-        st.pop();
-        temp1 = temp1->next;
-    }
-    return head;
-}
-
-Node* reverseDLL(Node* head){
+    if(head == NULL || head->next == NULL)return head;
     Node* last = NULL;
     Node* current = head;
     while(current){
