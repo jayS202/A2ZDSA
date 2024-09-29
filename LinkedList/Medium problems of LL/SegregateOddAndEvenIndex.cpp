@@ -152,3 +152,73 @@ int main()
     return 0;
 }
 
+// Even indexed Node comes before odd indexed nodes
+// TC-O(N) SC-O(1)
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+  public:
+    int data;
+    Node* next;
+  public:
+    Node(int data1, Node* next1){
+        data = data1;
+        next = next1;
+    }
+    Node(int data1){
+        data = data1;
+        next = nullptr;
+    }
+};
+
+// Convert Array to LinkedList
+Node* convertToLL(vector<int> &arr){
+    Node* head = new Node(arr[0]);
+    Node* mover = head;
+    for(int i=1;i<arr.size();i++){
+        Node* temp = new Node(arr[i]);
+        mover->next = temp;
+        mover = temp;
+    }
+    return head;
+}
+
+// Traverse
+void Traverse(Node* head){
+    Node* temp = head;
+    while(temp){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+}
+
+Node* oddAndEven(Node* head){
+    Node* oddInd = head;
+    Node* evenInd = head->next;
+    Node* evenStart = head->next;
+    Node* oddStart = head;
+    
+    while(evenInd!=NULL && evenInd->next!=NULL){
+        oddInd->next = oddInd->next->next;
+        oddInd = oddInd->next;
+        
+        evenInd->next = evenInd->next->next;
+        evenInd = evenInd->next;
+    }
+    
+    oddInd->next = nullptr;
+    evenInd->next = oddStart;
+    return evenStart;
+}
+
+int main()
+{
+    vector<int> l1 = {1,2,3,4,5,6};
+    Node* h1 = convertToLL(l1);
+    Traverse(h1);
+    cout<<endl;
+    Node* h2 = oddAndEven(h1);
+    Traverse(h2);
+    return 0;
+}
