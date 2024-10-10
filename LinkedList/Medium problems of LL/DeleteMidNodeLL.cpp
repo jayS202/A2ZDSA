@@ -24,6 +24,7 @@ public:
 
 
 Node *deleteMiddle(Node *head) {
+    if(head==NULL || head->next == NULL)return NULL;
     int cnt = 0;
     Node* temp = head;
     while(temp!=NULL){
@@ -103,8 +104,10 @@ public:
 
 
 Node *deleteMiddle(Node *head) {
+    if(head==NULL || head->next == NULL)return NULL;
     Node* slow = head;
-    Node* fast = head->next->next;
+    Node* fast = head;
+    fast = head->next->next;
     
     while(fast!=NULL && fast->next!=NULL){
         slow = slow->next;
