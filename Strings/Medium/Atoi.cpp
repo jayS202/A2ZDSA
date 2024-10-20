@@ -10,7 +10,7 @@
 // Return the integer as the final result.
 
 
-// TC - O(N) SC -(1)
+// TC - O(N) SC - (1)
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -40,6 +40,51 @@ int main()
 {
     string s = "-91283472332";
     int res = Atoi(s);
+    cout<<res;
+    return 0;
+}
+
+
+// Recursive implementation of Atoi
+#include <bits/stdc++.h>
+using namespace std;
+
+int AtoiRec(string s, int n, int index, bool isNegative, int result){
+    if(index==n || !isdigit(s[index])){
+        return isNegative?-result:result;
+    }
+
+    int digit = s[index] - '0';
+    if(result > (INT_MAX-digit)/10){
+        isNegative? INT_MIN:INT_MAX;
+    }
+    
+    result = result * 10 + digit;
+
+    return AtoiRec(s, n, index+1, isNegative, result);
+}
+
+int myAtoi(string s) {
+    int index = 0;
+    int n = s.size();
+    bool isNegative = false;
+    int result = 0;
+    while(index<n && s[index] == ' '){
+        index++;
+    }
+
+    if(index<n && (s[index] == '-' || s[index] == '+')){
+        isNegative = (s[index] == '-');
+        index++;
+    }
+
+    return AtoiRec(s, n, index, isNegative, result);
+}
+
+int main()
+{
+    string s = "  -123abc ";
+    int res = myAtoi(s);
     cout<<res;
     return 0;
 }
