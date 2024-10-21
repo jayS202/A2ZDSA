@@ -30,36 +30,37 @@ int main()
 
 // Recursive solution
 // TC - O(N), SC - O(1)
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-double POWER(int x, long long n){
-    if(n==0){
+double powRec(double x, long long nn){
+    if(nn == 0){
         return 1;
     }
-    
-    if(n%2==1){
-        return x * POWER(x, n-1);
+
+    if(nn%2==1){
+        return x*powRec(x, nn-1);
     }else{
-        return POWER(x*x, n/2);
+        return powRec(x*x, nn/2);
     }
 }
 
-double POW(int x, int n){
+double myPow(double x, int n) {
     long long nn = n;
+    if(n<0) nn = -1 * nn;
     
-    if(nn<0) nn = -1 * n;
+    double res =  powRec(x,nn);
     
-    double res = POWER(x,nn);
-    
-    if(n<0) res = 1.0/res;
+    if(n<0){
+        res = (double)1.0/(double)res;
+    } 
     return res;
 }
 
 int main()
 {
-    int x = 2;
-    int n = 21;
-    cout<<POW(x,n)<<endl;
+    double x = 2.0000;
+    int n = -2;
+    cout<<myPow(x,n)<<"\n";
     return 0;
 }
