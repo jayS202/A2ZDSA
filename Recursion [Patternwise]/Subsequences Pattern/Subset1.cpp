@@ -1,7 +1,7 @@
 // Problem Statement: Given an array print all the sum of the subset generated from it, in the increasing order.
 
 // Brute Force
-// TC - O(N*(2^N log (2^N))),SC - O(2^N)
+// TC - O(N*((2^N)+(2^N log (2^N)))),SC - O(2^N)
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -49,7 +49,7 @@ int main()
 }
 
 // Optimal 
-// TC - O(2^N log (2^N)), SC - O(2^N)
+// TC - O((2^N)+(2^N log (2^N))), SC - O(2^N)
 #include<bits/stdc++.h>
 using namespace std;
 
