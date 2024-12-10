@@ -40,8 +40,8 @@ int divide(int dividend, int divisor){
     if(dividend>=0 && divisor<0)sign = false;
     if(dividend<=0 && divisor>0)sign = false;
 
-    long n = abs(dividend);
-    long d = abs(divisor);
+    long n = abs((long)dividend);
+    long d = abs((long)divisor);
 
     long ans = 0;
     while(n>=d){
