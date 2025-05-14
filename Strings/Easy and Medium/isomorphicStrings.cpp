@@ -39,7 +39,6 @@ using namespace std;
 
 bool Isomorphic(string s, string t){
     unordered_map<char, char> mpp;
-    // unordered_map<char, char> mpp_ttos;
     if(s.size()!=t.size()) return false;
     
     for(int i=0;i<s.size();i++){
@@ -61,7 +60,7 @@ int main()
 }
 
 // TC - 𝑂(𝑛), where 𝑛 is the length of the strings s and t.
-// SC - O(1)
+// SC - O(m), where m is the number of unique characters in the strings s and t.
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -71,7 +70,6 @@ bool isomporphic(string s, string t){
     
     if(s.size()!=t.size())return false;
     
-    int cnt = 1;
     for(int i=0;i<s.size();i++){
         if(IndexS[s[i]]!=IndexT[t[i]])return false;
         
