@@ -39,32 +39,110 @@ Node* flattenLinkedList(Node* head)
 
 // Optimal
 // TC - O(2NM),SC - O(1)
-Node* merge2LL(Node* list1,Node* list2){
-	Node* dummyNode = new Node(-1);
-	Node* temp = dummyNode;
-	while(list1!=NULL && list2!=NULL){
-		if(list1->data < list2->data){
-			temp->child = list1;
-			temp = list1;
-			list1 = list1->child;
-		}else{
-			temp->child = list2;
-			temp = list2;
-			list2 = list2->child;
-		}
-		temp->next = NULL;
-	}
-	if(list1){
-		temp->child = list1;
-	}else{
-		temp->child = list2;
-	}
-	return dummyNode->child;
+
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *next;
+    Node *child;
+
+    Node() : data(0), next(nullptr), child(nullptr) {};
+    Node(int x) : data(x), next(nullptr), child(nullptr) {}
+    Node(int x, Node *nextNode, Node *childNode) : data(x), next(nextNode), child(childNode) {}
+};
+
+
+Node* merge(Node* list1, Node* list2){
+    Node* dummy = new Node(-1);
+    Node* temp = dummy;
+    while(list1!=NULL && list2!=NULL){
+        if(list1->data<list2->data){
+            temp->child = list1;
+            temp = list1;
+            list1 = list1->child;
+        }else{
+           temp->child = list2;
+           temp = list2;
+           list2 = list2->child;
+        }
+        temp->next = NULL;
+    }
+    if(list1){
+        temp->child=list1;
+    }else{
+        temp->child=list2;
+    }
+    return dummy->child;
 }
 
-Node* flattenLinkedList(Node* head) 
-{
-	if(head==NULL || head->next == NULL)return head;
-	Node* newHead = flattenLinkedList(head->next);
-	return merge2LL(head, newHead);
+
+Node* flattenLinkedList(Node* head){
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    Node* newhead = flattenLinkedList(head->next);
+    head = merge(head, newhead);
+    return head;
+}
+
+
+void printLinkedList(Node* head) {
+    while (head != nullptr) {
+        cout << head->data << " ";
+        head = head->child;
+    }
+    cout << endl;
+}
+
+
+void printOriginalLinkedList(Node* head, int depth) {
+    while (head != nullptr) {
+        cout << head->data;
+
+        // If child exists, recursively
+        // print it with indentation
+        if (head->child) {
+            cout << " -> ";
+            printOriginalLinkedList(head->child, depth + 1);
+        }
+
+        // Add vertical bars
+        // for each level in the grid
+        if (head->next) {
+            cout << endl;
+            for (int i = 0; i < depth; ++i) {
+                cout << "| ";
+            }
+        }
+        head = head->next;
+    }
+}
+
+int main() {
+    Node* head = new Node(5);
+    head->child = new Node(14);
+    
+    head->next = new Node(4);
+    head->next->child = new Node(10);
+    
+    head->next->next = new Node(12);
+    head->next->next->child = new Node(13);
+    head->next->next->child->child = new Node(20);
+    
+    head->next->next->next = new Node(7);
+    head->next->next->next->child = new Node(17);
+
+    
+    cout << "Original linked list:" << endl;
+    printOriginalLinkedList(head, 0);
+
+    
+    Node* flattened = flattenLinkedList(head);
+    cout << "\nFlattened linked list: ";
+    printLinkedList(flattened);
+
+    return 0;
 }
