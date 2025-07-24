@@ -43,7 +43,10 @@ int missingK(vector<int> vec, int n, int k){
             high = mid - 1;
         }
     }
+    // Using index
     return low + k;// (OR) high + 1 + k;
+    // Using value of the index
+    return vec[high]+(k-(vec[high] - (high+1)));
 }
 
 int main(){
