@@ -46,6 +46,7 @@ int missingK(vector<int> vec, int n, int k){
     // Using index
     return low + k;// (OR) high + 1 + k;
     // Using value of the index
+    if(high<0) return k; // arr = [2], k=1
     return vec[high]+(k-(vec[high] - (high+1)));
 }
 
