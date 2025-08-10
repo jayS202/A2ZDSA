@@ -1,3 +1,14 @@
+// Problem Statement – Classic Zigzag Arrangement
+
+// You are given an array of integers arr of size n.
+// Rearrange the elements of arr in a zigzag fashion such that:
+
+// arr[0] < arr[1] > arr[2] < arr[3] > arr[4] < arr[5] ...
+// In other words:
+// - At even indices (i % 2 == 0), the element at arr[i] should be less than the element at arr[i+1].
+// - At odd indices (i % 2 == 1), the element at arr[i] should be greater than the element at arr[i+1].
+// You may rearrange elements in-place and in O(n) time without sorting.
+
 #include<bits/stdc++.h>
 using namespace std;
 
