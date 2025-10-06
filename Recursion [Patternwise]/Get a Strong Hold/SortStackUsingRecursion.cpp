@@ -49,7 +49,7 @@ int main()
     
     sortAStack(s);
     
-    cout<<"After Reversing: "<<"\n";
+    cout<<"After sorting: "<<"\n";
     printStack(s);
     return 0;
 }
