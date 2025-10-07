@@ -78,3 +78,40 @@ int main()
     getAllStrings(k);
     return 0;
 }
+
+// Approach 3
+// TC - O(2^N), SC - O(N)
+
+// First get all the subsequences of the string with n.
+// later, restrict passing the 1 right if the previous character is 1.
+#include<bits/stdc++.h>
+using namespace std;
+
+void generate_str(string res, int ind, int n){
+    if(ind>=n){
+        cout<<res<<"\n";
+        return;
+    }
+    
+    // Take 0
+    res[ind] = '0';
+    generate_str(res, ind+1, n);
+    
+    // Take 1
+    if(ind==0 || res[ind-1]!='1'){
+        res[ind] = '1';
+        generate_str(res, ind+1, n);   
+    }
+}
+
+void generate_all_strings(int n){
+    string res(n, '0');
+    int ind = 0;
+    generate_str(res, ind, n);
+}
+
+int main(){
+    int n = 3;
+    generate_all_strings(n);
+    return 0;
+}
