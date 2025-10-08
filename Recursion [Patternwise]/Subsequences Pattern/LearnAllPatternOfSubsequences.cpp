@@ -2,6 +2,20 @@
 
 // TC - O(2^N), SC - O(N)
 
+// Basic Structure of generating sequnces
+
+// function generateSubsequences( arr, index, res, n ):
+//     if(index == n):
+//         print(res)
+//         return
+
+//     // Take
+//     generateSubsequences(arr, index+1, res+arr[index], res, n)
+    
+//     // Not Take
+//     generateSubsequences(arr, index+1, res, n)
+    
+
 // 1 - Find the subsequence whose sum is equal to s.
 #include<bits/stdc++.h>
 using namespace std;
