@@ -93,3 +93,84 @@ int main()
   }    
   return 0;
 }
+
+
+// Using the base Pick/Not-pick method with just a little improvement - Easy
+
+// 🧠 Base Logic: Pick / Not-Pick
+// At each index ind, you have two choices:
+// 1. Pick the element (if it doesn’t exceed the target)
+// 2. Not Pick the element — move forward and explore without it
+// This creates all possible subsets (like subset recursion).
+
+// ---
+
+// 🚀 The Improvement: Skip Duplicates
+
+// When not picking an element, we:
+// Move the index ind forward to skip all identical elements.
+
+
+// That means if we have sorted input like [1,1,2,5,6,7,10]
+// and we decide not to take the first 1,
+// we directly jump past all other 1s — no need to explore same combinations again.
+
+
+// ---
+
+// ⚙️ Key Steps
+// 1. Sort the array → brings duplicates together
+// 2. Pick current element if ≤ target → move to next index
+// 3. Not pick → skip all identical elements before next recursion
+
+// int next = ind + 1;
+// while (next < arr.size() && arr[next] == arr[ind]) next++;
+// findAllwithSum(arr, next, target, ds, ans);
+
+// 4. Base condition: if ind >= n → push to answer only if target == 0
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void findAllwithSum(vector<int> &arr, int ind, int target, vector<int> &ds, vector<vector<int>> &ans){
+    if(ind>=arr.size()){
+        if(target==0){
+            ans.push_back(ds);
+        }
+        return;
+    }
+    
+    if(arr[ind]<=target){
+        ds.push_back(arr[ind]);
+        findAllwithSum(arr, ind+1, target-arr[ind], ds, ans);
+        ds.pop_back();
+    }
+    
+    int next = ind+1;
+    while(next<arr.size() && arr[next]==arr[ind])next++;
+    
+    findAllwithSum(arr, next, target, ds, ans);
+}
+
+vector<vector<int>> findCombination(vector<int> &arr, int target){
+    sort(arr.begin(), arr.end());
+    int ind = 0;
+    vector<vector<int>> ans;
+    vector<int> ds;
+    findAllwithSum(arr, ind, target, ds, ans);
+    return ans;
+}
+
+int main(){
+    vector<int> arr = {10,1,2,7,6,1,5};
+    int target = 8;
+    vector<vector<int>> res = findCombination(arr, target);
+    for(auto it: res){
+        for(auto i: it){
+            cout<<i<<" ";
+        }
+        cout<<"\n";
+    }
+    return 0;
+}
+
