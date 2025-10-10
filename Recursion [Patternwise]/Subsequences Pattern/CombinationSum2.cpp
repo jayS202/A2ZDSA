@@ -97,6 +97,13 @@ int main()
 
 // Using the base Pick/Not-pick method with just a little improvement - Easy
 
+// Intutitive Explaination
+// In this pick/not-pick recursion
+// - The Pick branch explores all combinations starting with the current element.
+// - The not-pick branch says:
+//   "Okay, I'm done exploring all combinations that start with arr[ind].
+//    Now, skip every other duplicate of arr[mid], and start fresh with the next new unique number."
+
 // 🧠 Base Logic: Pick / Not-Pick
 // At each index ind, you have two choices:
 // 1. Pick the element (if it doesn’t exceed the target)
@@ -145,7 +152,8 @@ void findAllwithSum(vector<int> &arr, int ind, int target, vector<int> &ds, vect
         findAllwithSum(arr, ind+1, target-arr[ind], ds, ans);
         ds.pop_back();
     }
-    
+
+    // Not Pick (Skip all duplicates)
     int next = ind+1;
     while(next<arr.size() && arr[next]==arr[ind])next++;
     
