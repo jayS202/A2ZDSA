@@ -49,3 +49,66 @@ int main()
     printAns(ans);
     return 0;
 }
+
+
+// Pick and Not pick approach - Just improving the method to remove the duplicates at the first element (current element)
+
+// ✨ Intuitive Explanation: Subset Sum II
+
+// In this pick/not-pick recursion:
+
+// - Pick branch says:
+// "Let’s include arr[ind] in the current subset and explore all combinations that follow it."
+
+// - Not-pick branch says:
+// "Okay, I’ve explored all subsets that include arr[ind].
+// Now, I want to skip every other duplicate of arr[ind] so I don’t repeat the same subset structure again.
+// Let’s jump to the next new unique number and start fresh from there."
+
+
+// 🔍 Why This Works
+
+// - By sorting the array first, duplicates are grouped together.
+// - The pick path allows duplicates to be included naturally.
+// - The not-pick path uses a while loop to skip over all adjacent duplicates, ensuring we don’t generate the same subset multiple times.
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void getAllSubsets(int ind, vector<vector<int>> &ans, vector<int> &arr, vector<int> &ds, int n){
+    if(ind>=n){
+        ans.push_back(ds);
+        return;
+    }
+    
+    ds.push_back(arr[ind]);
+    getAllSubsets(ind+1, ans, arr, ds, n);
+    ds.pop_back();
+    
+    int next = ind+1;
+    while(next<n && arr[ind]==arr[next])next++;
+    
+    getAllSubsets(next, ans, arr, ds, n);
+}
+
+vector<vector<int>> Subset2(vector<int> &arr, int n){
+    sort(arr.begin(), arr.end());
+    vector<vector<int>> ans;
+    vector<int> ds;
+    int ind = 0;
+    getAllSubsets(ind, ans, arr, ds, n);
+    return ans;
+}
+
+int main(){
+    vector<int> arr = {4,4,4,1,4};
+    int n = arr.size();
+    vector<vector<int>> res = Subset2(arr, n);
+    for(auto it: res){
+        for(auto i: it){
+            cout<<i<<" ";
+        }
+        cout<<"\n";
+    } 
+    return 0;
+}
