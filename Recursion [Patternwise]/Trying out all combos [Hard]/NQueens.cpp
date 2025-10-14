@@ -3,6 +3,12 @@
 // Solution 1
 // Time Complexity: O(N! * N) nearly.
 // Space Complexity: O(N^2)  
+
+// Input: 4
+// Output:
+// ..Q. Q... ...Q .Q.. 
+// .Q.. ...Q Q... ..Q.
+
 #include<bits/stdc++.h>
 using namespace std;
 
