@@ -43,7 +43,7 @@ int main()
     return 0;
 }
 
-//  Approach 3
+//  Approach 3 - Brian Kernighan’s Algorithm
 // TC - O(Number of sets), SC - O(1)
 #include<bits/stdc++.h>
 using namespace std;
