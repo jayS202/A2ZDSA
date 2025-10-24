@@ -38,27 +38,38 @@ int main()
 #include<bits/stdc++.h>
 using namespace std;
 
-pair<int,int> singleNumber3(vector<int> &arr){
+void TwoNumAppearingOddNum(vector<int> &arr){
     int n = arr.size();
-    int num = 0, b1 = 0, b2 = 0;
+    int num = 0;
+    
+    // Step 1: Xor All elements of the array
     for(int i=0;i<n;i++){
-        num = num ^ arr[i];
+        num ^= arr[i];
     }
-    int rightmost = (num & (num-1))^num;
+    
+    // Step 2: Find the rightmost set bit
+    int res = (num & (num-1)) ^ num;
+    
+    // Step 3: Compare the distict bit with each elements
+    // Concept of Buckets: On comparing,
+    // if result is 0: push it to B1
+    // if result is 1: push it to B2
+    int B1 = 0; int B2 = 0;
+    
     for(int i=0;i<n;i++){
-        if(arr[i]&rightmost){
-            b1 = b1^arr[i];
+        if((arr[i]&res)){
+            B1 ^= arr[i]; 
         }else{
-            b2 = b2^arr[i];
+            B2 ^= arr[i];
         }
     }
-    return {b1,b2};
+    
+    cout<<"Num 1: "<<B1<<'\n';
+    cout<<"Num 2: "<<B2<<'\n';
 }
 
-int main()
-{
-    vector<int> arr = {2,4,2,14,3,7,7,3};
-    pair<int,int> res = singleNumber3(arr);
-    cout<<res.first<<" "<<res.second<<"\n";
+int main(){
+    vector<int> arr = {2, 4, 7, 9, 2, 4};
+    TwoNumAppearingOddNum(arr);
     return 0;
 }
