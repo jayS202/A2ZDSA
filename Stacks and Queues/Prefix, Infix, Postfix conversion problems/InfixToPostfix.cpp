@@ -1,4 +1,5 @@
 // Problem Statement: Given an infix expression, Your task is to convert the given infix expression to a postfix expression.
+
 // TC - O(N), SC - O(N)
 #include<bits/stdc++.h>
 using namespace std;
@@ -52,7 +53,8 @@ string InfixToPostfix(string s){
 }
 
 int main(){
-    string s = "(A+B)*(C+D)";
+    string s;
+    cin>>s;
     string res = InfixToPostfix(s);
     cout<<res;
     return 0;
