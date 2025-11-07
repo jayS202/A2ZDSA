@@ -26,3 +26,37 @@ int main(){
     }
     return 0;
 }
+
+// Approach 1: Using Stack
+// - You iterate from right to left (i = n-1 → 0).
+// - For each element:
+// - You pop all elements from the stack that are smaller than the current element.
+// - If the stack is not empty, its top is assigned as the next greater element.
+// - You push the current element onto the stack.
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> NextGreaterEle(vector<int> &arr){
+    stack<int> st;
+    int n = arr.size();
+    vector<int> ans(n, -1);
+    for(int i=n-1;i>=0;i--){
+        while(!st.empty() && arr[i]>st.top()){
+            st.pop();
+        }
+        if(!st.empty()){ // if(!st.empty() && arr[i]<st.top())
+            ans[i] = st.top();
+        }
+        st.push(arr[i]);
+    }
+    return ans;
+}
+
+int main(){
+    vector<int> arr = {5,7,1,2,6,0,4};
+    vector<int> res = NextGreaterEle(arr);
+    for(auto it: res){
+        cout<<it<<' ';
+    }
+    return 0;
+}
