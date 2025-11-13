@@ -48,6 +48,8 @@ int main(){
 // - Pop smaller/equal values (they can't be next greater).
 // - The top of the stack is the next greater element.
 // - Then push the current element.
+
+// TC - O(N), SC - O(N)
 #include<bits/stdc++.h>
 using namespace std;
 
