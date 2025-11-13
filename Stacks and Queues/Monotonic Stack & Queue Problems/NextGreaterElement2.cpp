@@ -39,3 +39,51 @@ int main(){
     cout<<endl;
     return 0;
 }
+
+
+// Optimal Solution
+// You traverse the array twice in reverse (to simulate the circular property).
+// The stack keeps track of “potential next greater” elements.
+// For each element:
+// - Pop smaller/equal values (they can't be next greater).
+// - The top of the stack is the next greater element.
+// - Then push the current element.
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> NextGreaterEle(vector<int> &arr){
+    stack<int> st;
+    int n = arr.size();
+    vector<int> ans(n);
+    
+    for(int i=2*n-1;i>=0;i--){
+        
+        int ind = i%n;
+        int curele = arr[ind];
+        
+        while(!st.empty() && st.top()<=curele){
+            st.pop();
+        }
+        
+        if(i<n){
+            if(st.empty()){
+                ans[i] = -1;
+            }else{
+                ans[i] = st.top();
+            }
+        }
+        
+        st.push(curele);
+    }
+    return ans;
+}
+
+int main(){
+    vector<int> arr = {5, 7, 1, 7, 6, 0};
+    vector<int> res = NextGreaterEle(arr);
+    for(auto it: res){
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    return 0;
+}
