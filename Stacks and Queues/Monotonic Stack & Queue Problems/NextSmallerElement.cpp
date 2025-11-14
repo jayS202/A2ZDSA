@@ -32,6 +32,9 @@ int main(){
 
 // Optimal Solution
 // TC - O(N), SC - O(N)
+#include<bits/stdc++.h>
+using namespace std;
+
 vector<int> NextSmallerEle(vector<int> &arr){
     stack<int> st;
     int n = arr.size();
