@@ -89,3 +89,29 @@ int main(){
     cout<<endl;
     return 0;
 }
+
+// OPTIMAL - Similar to Next Greater Element
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> NextGreaterEle(vector<int> &arr){
+    int n = arr.size();
+    stack<int> st;
+    vector<int> res(n, -1);
+    for(int i=2*n-1;i>=0;i--){
+        int idx = i%n;
+        while(!st.empty() && st.top()<=arr[idx]) st.pop();
+        if(!st.empty() && i<=n) res[idx] = st.top();  
+        st.push(arr[idx]);
+    }
+    return res;
+}
+
+int main(){
+    vector<int> arr = {3, 10, 4, 2, 1, 2, 6, 1, 7, 2, 9};
+    vector<int> res = NextGreaterEle(arr);
+    for(auto it: res){
+        cout<<it<<" ";
+    }
+    return 0;
+}
