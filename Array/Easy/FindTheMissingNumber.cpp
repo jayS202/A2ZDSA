@@ -110,3 +110,37 @@ int main(){
     cout << "The missing number is: " << ans << endl;
     return 0;
 }
+
+
+// Find Multiple missing Numbers
+// TC - O(N), SC - O(1)
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> findMultipleNuumber(vector<int> &arr, int n){
+    vector<int> res;
+    for(int i=0;i<n;i++){
+        int indNum = abs(arr[i]) - 1;
+        
+        if(arr[indNum]>0){
+            arr[indNum] = -arr[indNum];
+        }
+    }
+    
+    for(int i=0;i<n;i++){
+        if(arr[i]>0){
+            res.push_back(i+1);
+        }
+    }
+    return res;
+}
+
+int main(){
+    vector<int> arr = {4,3,2,7,8,2,3,1};
+    int n = arr.size();
+    vector<int> res = findMultipleNuumber(arr,n);
+    for(auto it: res){
+        cout<<it<<" ";
+    }
+    return 0;
+}
