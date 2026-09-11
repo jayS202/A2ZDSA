@@ -14,9 +14,6 @@ graph = {
   8: [7,5]
 }
 
-n = len(graph.keys())
-print(n)
-
 def BFS(graph, firstnode):
     n = len(graph.keys())
     vis = [0]*(n+1)
@@ -33,5 +30,26 @@ def BFS(graph, firstnode):
           queue.append(neighbour)
 
     return bfs
+
+print(BFS(graph, 1))
+
+# Using Deque
+from collections import deque
+
+def BFS(graph, firstNode):
+  n = len(graph.keys())
+  vis = [0]*(n+1)
+  queue = deque([firstNode])
+  vis[firstNode] = 1
+  bfs = []
+
+  while queue:
+    node = queue.popleft()
+    bfs.append(node)
+    for it in graph[node]:
+      if vis[it]!=1:
+        vis[it] = 1
+        queue.append(it)
+  return bfs
 
 print(BFS(graph, 1))
