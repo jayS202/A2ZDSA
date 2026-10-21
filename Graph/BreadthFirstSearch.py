@@ -53,3 +53,48 @@ def BFS(graph, firstNode):
   return bfs
 
 print(BFS(graph, 1))
+
+
+# BFS in python
+from collections import deque
+
+def BFS(graph,firstNode):
+  vis = set()
+  queue = deque([firstNode])
+  res = []
+  vis.add(firstNode)
+  while queue:
+    node = queue.popleft()
+    res.append(node)
+    for neighbour in graph[node]:
+      if neighbour not in vis:
+        queue.append(neighbour)
+        vis.add(neighbour)
+  return res
+    
+
+graph = {
+  '1': ['2','3'],
+  '2': ['1', '4', '5'],
+  '3': ['1','6', '7'],
+  '4': ['2'],
+  '5': ['2','8'],
+  '6': ['3'],
+  '7': ['3'],
+  '8': ['5']
+}
+
+print(BFS(graph,'1'))
+#              1
+#            /   \
+#           2     3
+#          / \     \
+#         4   5 --- 6
+#              \
+#               7
+
+# Queue = [4,5]
+
+# Visited = {1,2,3,4,5,6}
+
+# Res = [1,2,3]
